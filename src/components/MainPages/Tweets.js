@@ -1,5 +1,6 @@
-import data from '../../data.json';
+// import data from '../../data.json';
 import styled from 'styled-components';
+import { useEffect, useState } from 'react';
 
 const StyledTable = styled.table`
   border: 1px solid red;
@@ -22,34 +23,57 @@ const StyledTable = styled.table`
 `;
 
 export const Tweets = () => {
-  let localData;
-  if (localStorage.getItem('tweets') === null) {
-    localStorage.setItem('tweets', JSON.stringify(data));
-  } else {
-    localData = JSON.parse(localStorage.getItem('tweets'));
-  }
+  const [tweetList, setTweetList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+
+  const callData = () => {
+    setIsLoading(true);
+    setIsError(false);
+
+    fetch('https://koreanjson.com/comments')
+      .then((re) => re.json())
+      .then((re) => {
+        let data = [...re];
+        setTweetList(data);
+      })
+      .catch((e) => {
+        setIsError(true);
+        console.error(e);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+
+  useEffect(callData, []);
 
   return (
     <div>
       <h1>Tweet Lists</h1>
-      <StyledTable>
-        <thead>
-          <tr>
-            <th>Number</th>
-            <th>Title</th>
-          </tr>
-        </thead>
-        <tbody>
-          {localData.map((tweet) => {
-            return (
-              <tr key={tweet.id}>
-                <td style={{ width: '100px', textAlign: 'center' }}>{tweet.id}</td>
-                <td style={{ paddingLeft: '20px' }}>{tweet.title}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </StyledTable>
+      {isError && <h1 style={{ color: 'red' }}>Error!</h1>}
+      {isLoading ? (
+        <h1>Loading!!!</h1>
+      ) : (
+        <StyledTable>
+          <thead>
+            <tr>
+              <th>Number</th>
+              <th>Title</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tweetList.map((tweet) => {
+              return (
+                <tr key={tweet.id}>
+                  <td style={{ width: '100px', textAlign: 'center' }}>{tweet.id}</td>
+                  <td style={{ paddingLeft: '20px' }}>{tweet.content}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </StyledTable>
+      )}
     </div>
   );
 };
