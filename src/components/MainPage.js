@@ -19,8 +19,8 @@ export const MainPage = () => {
   return (
     <MainPageDiv>
       <Routes>
-        <Route path={'/fetch_users'} element={<FetchUsers />} />
         <Route path={'/'} element={<Tweets />} />
+        <Route path={'/fetch_users'} element={<FetchUsers />} />
         <Route path={'/memos'} element={<Memos />} />
         <Route path={'/about'} element={<About />} />
         <Route path={'/mypage'} element={<MyPage />} />

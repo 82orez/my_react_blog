@@ -31,11 +31,11 @@ export const Tweets = () => {
     setIsLoading(true);
     setIsError(false);
 
-    fetch('https://koreanjson.com/comments')
+    fetch('https://koreanjson.com/comments1')
       .then((re) => re.json())
       .then((re) => {
-        let data = [...re];
-        setTweetList(data);
+        // let data = [...re];
+        setTweetList(re);
       })
       .catch((e) => {
         setIsError(true);
@@ -58,7 +58,7 @@ export const Tweets = () => {
         <StyledTable>
           <thead>
             <tr>
-              <th>Number</th>
+              <th>No.</th>
               <th>Title</th>
             </tr>
           </thead>
@@ -66,7 +66,7 @@ export const Tweets = () => {
             {tweetList.map((tweet) => {
               return (
                 <tr key={tweet.id}>
-                  <td style={{ width: '100px', textAlign: 'center' }}>{tweet.id}</td>
+                  <td style={{ width: '50px', textAlign: 'center' }}>{tweet.id}</td>
                   <td style={{ paddingLeft: '20px' }}>{tweet.content}</td>
                 </tr>
               );

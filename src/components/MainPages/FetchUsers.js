@@ -32,8 +32,8 @@ export const FetchUsers = () => {
     fetch('https://jsonplaceholder.typicode.com/users')
       .then((re) => re.json())
       .then((re) => {
-        let users = [...re];
-        setUserList(users);
+        // let users = [...re];
+        setUserList(re);
         return 'Hello Promise~!';
       })
       .then((re) => console.log(re))
