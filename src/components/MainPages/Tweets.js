@@ -31,7 +31,7 @@ export const Tweets = () => {
     setIsLoading(true);
     setIsError(false);
 
-    fetch('https://koreanjson.com/comments1')
+    fetch('https://koreanjson.com/comments')
       .then((re) => re.json())
       .then((re) => {
         // let data = [...re];
