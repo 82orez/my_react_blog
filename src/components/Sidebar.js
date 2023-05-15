@@ -22,6 +22,12 @@ export const Sidebar = () => {
     <SidebarDiv>
       <p
         onClick={() => {
+          navigate('/fetch_users');
+        }}>
+        Fetch users <i className="fa-solid fa-magnifying-glass-plus"></i>
+      </p>
+      <p
+        onClick={() => {
           navigate('/');
         }}>
         Tweets <i className="fa-brands fa-twitter"></i>
@@ -31,12 +37,6 @@ export const Sidebar = () => {
           navigate('/memos');
         }}>
         Memos <i className="fa-solid fa-list"></i>
-      </p>
-      <p
-        onClick={() => {
-          navigate('/fetch_users');
-        }}>
-        Fetch users <i className="fa-solid fa-magnifying-glass-plus"></i>
       </p>
       <p
         onClick={() => {

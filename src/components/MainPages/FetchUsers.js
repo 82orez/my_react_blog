@@ -24,6 +24,7 @@ export const FetchUsers = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
+  // ! 아래의 함수는 useEffect() 훅을 사용해서 최초 렌더링때만 실행되게 할 수도 있음.
   const onclickBttn = () => {
     setIsLoading(true);
     setIsError(false);
@@ -44,7 +45,6 @@ export const FetchUsers = () => {
         setIsLoading(false);
       });
   };
-  // console.log('out: ',userList)
 
   return (
     <div>
