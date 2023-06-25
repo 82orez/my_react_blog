@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
-const SidebarDiv = styled.div`
+const DivSidebar = styled.div`
   padding: 10px;
   margin: 10px;
   border: 1px solid blue;
@@ -19,37 +19,22 @@ export const Sidebar = () => {
   const navigate = useNavigate();
 
   return (
-    <SidebarDiv>
-      <p
-        onClick={() => {
-          navigate('/');
-        }}>
+    <DivSidebar>
+      <p onClick={() => navigate('/')}>
         Tweets <i className="fa-brands fa-twitter"></i>
       </p>
-      <p
-        onClick={() => {
-          navigate('/fetch_users');
-        }}>
+      <p onClick={() => navigate('/fetch_users')}>
         Fetch users <i className="fa-solid fa-magnifying-glass-plus"></i>
       </p>
-      <p
-        onClick={() => {
-          navigate('/memos');
-        }}>
+      <p onClick={() => navigate('/memos')}>
         Memos <i className="fa-solid fa-list"></i>
       </p>
-      <p
-        onClick={() => {
-          navigate('/about');
-        }}>
+      <p onClick={() => navigate('/about')}>
         About <i className="fa-solid fa-question"></i>
       </p>
-      <p
-        onClick={() => {
-          navigate('mypage');
-        }}>
+      <p onClick={() => navigate('my_page')}>
         My page <i className="fa-solid fa-user"></i>
       </p>
-    </SidebarDiv>
+    </DivSidebar>
   );
 };
